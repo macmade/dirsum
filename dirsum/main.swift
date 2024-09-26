@@ -104,36 +104,39 @@ struct File
 
 let files: [ File ] = enumerator.compactMap
 {
-    guard let filename = $0 as? String
-    else
+    filename in autoreleasepool
     {
-        return nil
-    }
+        guard let filename = filename as? String
+        else
+        {
+            return nil
+        }
 
-    let url = dir.appending( component: filename )
+        let url = dir.appending( component: filename )
 
-    do
-    {
-        return try File( url: url, globalHasher: &hasher )
-    }
-    catch File.Error.isDirectory
-    {
-        return nil
-    }
-    catch File.Error.doesNotExist
-    {
-        print( "Error: File does not exist - \( url.path( percentEncoded: false ) )" )
-        exit( -1 )
-    }
-    catch File.Error.cannotRead
-    {
-        print( "Error: Cannot read file - \( url.path( percentEncoded: false ) )" )
-        exit( -1 )
-    }
-    catch
-    {
-        print( "Error: \( error )" )
-        exit( -1 )
+        do
+        {
+            return try File( url: url, globalHasher: &hasher )
+        }
+        catch File.Error.isDirectory
+        {
+            return nil
+        }
+        catch File.Error.doesNotExist
+        {
+            print( "Error: File does not exist - \( url.path( percentEncoded: false ) )" )
+            exit( -1 )
+        }
+        catch File.Error.cannotRead
+        {
+            print( "Error: Cannot read file - \( url.path( percentEncoded: false ) )" )
+            exit( -1 )
+        }
+        catch
+        {
+            print( "Error: \( error )" )
+            exit( -1 )
+        }
     }
 }
 .sorted
