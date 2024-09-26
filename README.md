@@ -12,6 +12,12 @@ dirsum
 
 A tool to display a SHA-265 hash of each file in a directory.
 
+### Installation
+
+    brew install macmade/tap/dirsum
+
+### Usage
+
     USAGE: options <path> [--files] [--size]
     
     ARGUMENTS:
