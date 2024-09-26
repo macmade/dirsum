@@ -6,8 +6,8 @@ jobs:
         strategy:
             matrix:
                 run-config:
-                    - { scheme: 'dirsum', configuration: 'Debug',   project: 'dirsum.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
-                    - { scheme: 'dirsum', configuration: 'Release', project: 'dirsum.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
+                    - { scheme: 'dirsum - Debug',   configuration: 'Debug',   project: 'dirsum.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
+                    - { scheme: 'dirsum - Release', configuration: 'Release', project: 'dirsum.xcodeproj', build: 1, analyze: 1, test: 0, info: 1, destination: 'platform=macOS' }
         steps:
             
             - uses: actions/checkout@v1
